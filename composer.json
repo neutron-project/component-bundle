@@ -1,5 +1,5 @@
 {
-    "name":         "neutron/neutron-component-bundle",
+    "name":         "neutron/component-bundle",
     "description":  "Components used by neutron-project bundles",
     "keywords":     ["neutron project"],
     "type":         "symfony-bundle",

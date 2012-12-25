@@ -1,0 +1,44 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    
+    <parameters>
+        <parameter key="neutron_component.twig.extension.yes_no.class">Neutron\ComponentBundle\Twig\Extension\YesNoExtension</parameter>
+        <parameter key="neutron_component.form.helper.form_helper.class">Neutron\ComponentBundle\Form\Helper\FormHelper</parameter>
+        <parameter key="neutron_component.util.filter.slug.class">Neutron\ComponentBundle\Util\Filter\SlugFilter</parameter>
+        <parameter key="neutron_component.validator.unique_translatable_property_validator.class">Neutron\ComponentBundle\Validator\Constraint\UniqueTranslatablePropertyValidator</parameter>
+        <parameter key="neutron_component.doctrine.manager.class">Neutron\ComponentBundle\Doctrine\AbstractManager</parameter>
+    </parameters>
+
+    <services>
+        <service id="neutron_component.twig.extension.yes_no" class="%neutron_component.twig.extension.yes_no.class%">
+            <argument type="service" id="service_container" />
+            <tag name="twig.extension" />
+        </service>
+        
+        <service id="neutron_component.form.helper.form_helper" class="%neutron_component.form.helper.form_helper.class%">
+            <argument type="service" id="translator" />
+        </service>
+        
+        <service id="neutron_component.util.filter.slug" class="%neutron_component.util.filter.slug.class%">
+          
+        </service>
+        
+        <service id="neutron_component.validator.unique_translatable_property_validator" 
+        	class="%neutron_component.validator.unique_translatable_property_validator.class%">
+		    <argument type="service" id="doctrine" />
+		    <argument type="service" id="neutron_component.util.filter.slug" />
+		    <argument type="service" id="annotation_reader" />
+		    <tag name="validator.constraint_validator" alias="unique_translatable_property_validator" />
+		</service>
+
+        <service id="neutron_component.doctrine.manager" 
+        	class="%neutron_component.doctrine.manager.class%" abstract="true">	
+        </service>
+   
+    </services>
+    
+</container>

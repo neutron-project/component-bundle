@@ -1,0 +1,5 @@
+twig:
+    extension:
+      yes_no:
+        yes: Yes
+        no: No
